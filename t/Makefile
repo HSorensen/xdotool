@@ -3,8 +3,8 @@ ifneq ($(DEBUG), 0)
 RUBYFLAGS=-d
 endif
 
-HEADLESS_TESTS?=test-xvfb-nowm test-xvfb-openbox test-xvfb-gnome
-XEPHYR_TESTS?=test-xephyr-nowm test-xephyr-openbox test-xephyr-gnome
+HEADLESS_TESTS?=test-xvfb-awesome test-xvfb-nowm test-xvfb-openbox test-xvfb-gnome
+XEPHYR_TESTS?=test-xephyr-awesome test-xephyr-nowm test-xephyr-openbox test-xephyr-gnome
 
 all-headless: $(HEADLESS_TESTS)
 all-xephyr: $(XEPHYR_TESTS)
@@ -55,6 +55,12 @@ test-xvfb-openbox:
 
 test-xephyr-openbox:
 	WM=openbox-session $(MAKE) test-xephyr
+
+test-xvfb-awesome:
+	WM=awesome-session $(MAKE) test-xvfb
+
+test-xephyr-awesome:
+	WM=awesome-session $(MAKE) test-xephyr
 
 test-xvfb-gnome:
 	@echo "=> Note about gnome: Gnome tests will fail if you are already running gnome."
